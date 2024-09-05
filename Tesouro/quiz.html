@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Infantil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .quiz-container h2 {
+            margin-bottom: 20px;
+        }
+        .quiz-container .question {
+            margin-bottom: 15px;
+        }
+        .quiz-container .options {
+            margin-bottom: 20px;
+        }
+        .quiz-container .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .quiz-container .button-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Quiz Infantil</h2>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="button-container">
+        <button onclick="checkAnswer()">Verificar</button>
+    </div>
+</div>
+
+<script>
+    const quiz = [
+        {
+            question: "Quanto é 100 menos 33?",
+            options: ["77", "67", "63", "73"],
+            correct: 1
+        },
+        {
+            question: "Qual destas palavras está escrita corretamente?",
+            options: ["Piscina", "Psina", "Pscina", "Picina"],
+            correct: 0
+        },
+        {
+            question: "Qual é o maior país do mundo em área territorial?",
+            options: ["Brasil", "Canadá", "China", "Rússia"],
+            correct: 3
+        },
+        {
+            question: "Qual é o maior animal que existe?",
+            options: ["Elefante", "Baleia", "Girafa", "Gorila"],
+            correct: 1
+        },
+        {
+            question: "Quantos anos um presidente tem de mandato no Brasil?",
+            options: ["2 anos", "1 ano", "4 anos", "6 anos"],
+            correct: 2
+        }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        
+        questionEl.innerText = quiz[currentQuestion].question;
+        optionsEl.innerHTML = '';
+        
+        quiz[currentQuestion].options.forEach((option, index) => {
+            optionsEl.innerHTML += `
+                <label>
+                    <input type="radio" name="option" value="${index}">
+                    ${option}
+                </label>
+            `;
+        });
+    }
+
+    function checkAnswer() {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        
+        if (!selectedOption) {
+            alert('Por favor, selecione uma opção');
+            return;
+        }
+
+        const answer = parseInt(selectedOption.value);
+
+        if (answer === quiz[currentQuestion].correct) {
+            currentQuestion++;
+            if (currentQuestion < quiz.length) {
+                loadQuestion();
+            } else {
+                // Redirecionar para a p�gina de parabeniza��o
+                window.location.href = 'parabens.html';
+            }
+        } else {
+            alert('Resposta errada! Voltando á primeira pergunta.');
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    // Carregar a primeira pergunta
+    loadQuestion();
+</script>
+
+</body>
+</html>

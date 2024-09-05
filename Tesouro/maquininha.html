@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Peralta&display=swap" rel="stylesheet">
+    <title>Código Final</title>
+    <style>
+        body {
+            background-image: url("img/pirata_fundo.avif");
+            opacity: 50px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-family: "Peralta", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 50px;
+            color: #2c1b04;
+        }
+
+        #pagamento {
+            border: 1px solid #2b5a93;
+            background-color: #2b5a93;
+            width: 310px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        #pagamento label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        #pagamento input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #pagamento button {
+            background-color: #053C87;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #pagamento button:hover {
+            background-color: #053C87;
+        }
+
+        #message {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: rgb(0, 0, 0);
+        }
+
+        .card {
+            background-color: #eee1d1;
+            border: 1px solid #eee1d1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 250px;
+            box-shadow: 0 0 10px #0000001a;
+            position: relative;
+            color: #4d381d;
+        }
+
+        .card .card-slot {
+            background-color: #fff;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            height: 100px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card .card-slot:before {
+            content: "";
+            background-color: #ccc;
+            width: 60%;
+            height: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card .card-slot:after {
+            content: "";
+            background-color: #ccc;
+            width: 2px;
+            height: 60%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card .insert-card {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .numeros {
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 50px;
+            color: #333;
+        }
+
+        .numero {
+            background-color: #cfb697;
+            width: calc(200% / 10);
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #aa9375;
+            color: #4d381d;
+            border-radius:10px;
+            font-size: 30px;
+            padding: 10px;
+        }
+
+        #amount {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Código Final</h1>
+
+    <form method="POST" action="maquininha.php">
+        <div id="pagamento">
+            <div class="card">
+                <label for="amount">Digite o código:</label>
+                <input id="amount" type="text" name="codigo" min="0">
+                <button type="submit">OK</button>
+                <div class="numeros">
+                    <span class="numero" onclick="addToInput(1)">1</span>
+                    <span class="numero" onclick="addToInput(2)">2</span>
+                    <span class="numero" onclick="addToInput(3)">3</span><br>
+                    <span class="numero" onclick="addToInput(4)">4</span>
+                    <span class="numero" onclick="addToInput(5)">5</span>
+                    <span class="numero" onclick="addToInput(6)">6</span><br>
+                    <span class="numero" onclick="addToInput(7)">7</span>
+                    <span class="numero" onclick="addToInput(8)">8</span>
+                    <span class="numero" onclick="addToInput(9)">9</span><br>
+                    <span class="numero" onclick="addToInput(0)">0</span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            startGame();
+        });
+
+        function startGame() {
+            document.getElementById('pagamento').style.display = 'block';
+        }
+
+        function processPayment() {
+            const amount = document.getElementById('amount').value;
+
+            if (amount.trim() === '') {
+                showMessage('Digite Um Código Válido.');
+                return;
+            }
+            showMessage('Código validado com sucesso')
+            //showMessage(`O valor de R$ ${amount} foi pago com sucesso!`);//
+        }
+
+        function showMessage(message) {
+            document.getElementById('message').textContent = message;
+        }
+
+        function addToInput(number) {
+            const input = document.getElementById('amount');
+            input.value += number.toString();
+        }
+    </script>
+</body>
+</html>

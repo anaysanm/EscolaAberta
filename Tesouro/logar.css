@@ -1,0 +1,175 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    image-orientation: from-image;
+    background-color: #fcf7f7;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Slackey", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-image: url("imagns/teste.jpg");
+
+}
+
+.navbar {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    color: white;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar img {
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar .navbar-text {
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(255, 255, 255);
+    padding-right: 40px;
+}
+
+.login-container {
+    font-family: "Peralta", serif;
+    font-weight: 400;
+    font-style: normal;
+    
+    padding: 30px;
+    border-radius: 8px;
+  
+    margin-top: 100px;
+    width: 550px;
+    height: 400px;
+    text-align: left;
+    background-image: url("imagns/papelzinho.png"); /* Substitua pelo caminho correto da imagem */
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.Nome {
+    width: 340px; /* Ajusta a largura para ocupar metade da linha com margem entre os campos */
+    padding: 8px;
+    margin: 8px 4px 8px 0; /* Adiciona margem à direita do campo, exceto para o último campo */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.AnoInput {
+    /* Ajusta a largura para ocupar metade da linha com margem entre os campos */
+    padding: 8px;
+    margin: 8px 4px 8px 0; /* Adiciona margem à direita do campo, exceto para o último campo */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.TurmaInput {
+  /* Ajusta a largura para ocupar metade da linha com margem entre os campos */
+    padding: 8px;
+    margin: 8px 50px 8px 0; /* Adiciona margem à direita do campo, exceto para o último campo */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.IdadeInput {
+    width: 100px; /* Ajusta a largura para ocupar metade da linha com margem entre os campos */
+    padding: 8px;
+    margin: 8px 4px 8px 0; /* Adiciona margem à direita do campo, exceto para o último campo */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.student-fields {
+    display: flex;
+    flex-direction: row; /* Coloca os campos na mesma linha */
+    align-items: center; /* Alinha itens verticalmente */
+    justify-content: space-between; /* Espaço igual entre os campos */
+    margin-top: 10px;
+}
+
+.student-fields label {
+    text-align: center;
+    margin-bottom: 4px; /* Espaçamento entre rótulo e campo */
+    font-size: 14px; /* Tamanho da fonte dos rótulos */
+}
+
+.student-fields input {
+    width: calc(50% - 8px); /* Ajusta a largura dos campos */
+    padding: 8px; /* Espaçamento interno dos campos */
+    font-size: 14px; /* Tamanho da fonte dos campos */
+}
+
+#age {
+    width: calc(50% - 8px); /* Ajusta a largura para ocupar metade da linha */
+}
+
+.login-container button {
+    background-color: #df8b03;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-container button:hover {
+    background-color: #df8b03;
+}
+.aluno {
+    display: none;
+    justify-content: space-between;
+}
+
+#radio1:checked ~ #containerAluno {
+    display: flex;
+    
+}
+
+#radio2:checked ~ #containerAluno {
+    display: none;
+}
+
+.todos{
+    margin-left: 50px;
+}
+
+
+.inicioNome{
+    display: flex;
+    justify-content: space-between;
+}
+.todoNome{
+    margin-right: 15px;
+}
+.botaoDiv{
+    display: flex;
+    justify-content: end;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+
+h2 {
+    font-family: "Slackey", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

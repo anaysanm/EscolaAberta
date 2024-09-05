@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Adolescente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .quiz-container h2 {
+            margin-bottom: 20px;
+        }
+        .quiz-container .question {
+            margin-bottom: 15px;
+        }
+        .quiz-container .options {
+            margin-bottom: 20px;
+        }
+        .quiz-container .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .quiz-container .button-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Quiz Adolescente</h2>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="button-container">
+        <button onclick="checkAnswer()">Verificar</button>
+    </div>
+</div>
+
+<script>
+    const quiz = [
+        {
+            question: "Qual é o resultado da raiz quadrada de 144?",
+            options: ["10", "12", "14", "16"],
+            correct: 1
+        },
+        {
+            question: "Qual � o tipo de sujeito da frase 'O cachorro late � noite.'?",
+            options: ["Simples", "Composto", "Indeterminado", "Inexistente"],
+            correct: 0
+        },
+        {
+            question: "Qual � o ponto mais alto do Brasil?",
+            options: ["Pico da Neblina", "Pico da Bandeira", "Monte Roraima", "Pico das Agulhas Negras"],
+            correct: 0
+        },
+        {
+            question: "Em qual continente o boto-cor-de-rosa � encontrado?",
+            options: ["Am�rica do sul", "Am�rica central", "Oceania", "Toda a am�rica"],
+            correct: 0
+        },
+        {
+            question: "Qual foi o �ltimo imperador do Brasil?",
+            options: ["Dom Pedro II", "Dom Jo�o VI", "Dom Pedro I", "Dom Miguel I"],
+            correct: 0
+        }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        
+        questionEl.innerText = quiz[currentQuestion].question;
+        optionsEl.innerHTML = '';
+        
+        quiz[currentQuestion].options.forEach((option, index) => {
+            optionsEl.innerHTML += `
+                <label>
+                    <input type="radio" name="option" value="${index}">
+                    ${option}
+                </label>
+            `;
+        });
+    }
+
+    function checkAnswer() {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        
+        if (!selectedOption) {
+            alert('Por favor, selecione uma op��o');
+            return;
+        }
+
+        const answer = parseInt(selectedOption.value);
+
+        if (answer === quiz[currentQuestion].correct) {
+            currentQuestion++;
+            if (currentQuestion < quiz.length) {
+                loadQuestion();
+            } else {
+                // Redirecionar para a p�gina de parabeniza��o
+                window.location.href = 'parabens.html';
+            }
+        } else {
+            alert('Resposta errada! Voltando � primeira pergunta.');
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    // Carregar a primeira pergunta
+    loadQuestion();
+</script>
+
+</body>
+</html>
